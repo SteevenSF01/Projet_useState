@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playfair+Display&family=Sora:wght@100..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+html{
+  width: 0;
+  height: 0;
+}
+
 body{
+  width: 100vw;
   height: 100vh;
   background-color: #EDF3FDff;
   font-family: 'Ubuntu' sans-serif;
@@ -9,8 +15,17 @@ body{
   align-items: center;
 }
 
-@media (max-width: 475px) {
+@media (max-width: 768px) {
   body{
+    height: 120vh;
     width: fit-content;
+    padding-inline: 20px;
+  }
+}
+@media (max-width: 426px) {
+  body{
+    height: 215vh;
+    width: fit-content;
+    padding-inline: 20px;
   }
 }
