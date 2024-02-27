@@ -1,10 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
 
 export default function Personal(props) {
 
 
   const changeValue = (set, event) => {
+    //Function pour changer la valeur de l'input
     set(event.target.value.trim());
   };
 

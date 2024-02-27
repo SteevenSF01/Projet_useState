@@ -1,7 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 
 export default function Sumarry(props) {
+    //Function pour faire la sommes des differents produits
     const sommes = () => {
         let total = 0; 
         if (props.check) {
@@ -64,6 +64,7 @@ export default function Sumarry(props) {
       </div>
       {props.check ? (
         <p className="flex justify-between px-5 mt-4 text-[#b7b4b4] text-[14px]">
+            {/* appel la fonction pour return la sommes et l'afficher  */}
           Total (per month) <span className="text-[#032952ff] text-[14px] font-bold">${sommes()}/mo </span>
         </p>
       ) : (

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 import Arcade from "./../../images/icon-arcade.svg";
 import Advanced from "./../../images/icon-advanced.svg";
@@ -14,6 +13,7 @@ export default function Plan(props) {
 
 
   const achetez = (element) => {
+    // Copie l'element dans pack
     props.setPack(element);
   };
 
@@ -26,6 +26,7 @@ export default function Plan(props) {
         You have the option of monthly or yearly billing
       </h6>
       <section className="w-[100%] h-[35%] flex justify-between ">
+        {/* map pour créer les cartes  */}
         {array.map((element, id) => {
           return (
             <button
@@ -35,7 +36,8 @@ export default function Plan(props) {
             >
               <img src={element.image} alt="" className="w-[40%] " />
               <p className="flex flex-col items-start text-[#032952ff] font-bold">
-                {element.nom}{" "}
+                {element.nom}
+                {/* si 'check' est true, il montre le prix en mensuel sinon en anuel  */}
                 {props.check ? (
                   <span className="text-[12px] text-gray-400 font-medium ">
                     ${element.mensuel}/mo
@@ -58,6 +60,7 @@ export default function Plan(props) {
           Monthly
         </p>
         <input
+        // le onclick change le boolean de valeur
           onClick={() => props.setCheck(!props.check)}
           type="checkbox"
           checked= {!props.check}

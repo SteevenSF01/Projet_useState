@@ -11,24 +11,26 @@ function App() {
   //Sidebar
   const [pages, setPages] = useState(0);
 
-  //Personal
+  //Personal (State pour stocker les données du formulaire)
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   //Plan
-  const [pack, setPack] = useState("");
-  const [check, setCheck] = useState(false); //Stock boolean pour vérifier anuel et mensuel dans add-ons
+  const [pack, setPack] = useState(""); //Stock l'element dans le useState
+  const [check, setCheck] = useState(false); //Stock boolean pour vérifier anuel et mensuel dans add-ons et summary
   //Add ons
   const [checkAdd, setCheckAdd] = useState(false);
-  const [checkedItems, setCheckedItems] = useState({});
-  const [option, setOption] = useState([])
+  const [checkedItems, setCheckedItems] = useState({}); //Stock le true ou false des options choisit
+  const [option, setOption] = useState([]); //Stock les options choisit
 
+  //Function pour pour pouvoir cliquer independament, garce a l'id
   const toggleCheckbox = (id, element) => {
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
       [id]: !prevCheckedItems[id],
     }));
-  
+
+    // Function qui permet de check les elements choisit et les enleve s'il sont décocher
     setOption((prevOption) => {
       if (prevOption.some((item) => item.id === id)) {
         return prevOption.filter((item) => item.id !== id);
@@ -37,11 +39,10 @@ function App() {
       }
     });
   };
-  
-  
-
 
   //Sidebar
+
+  // Function qui permet de changer les pages avec des limites
   const nextPages = () => {
     if (!pack && pages === 1) {
       return;
@@ -51,8 +52,11 @@ function App() {
 
   const previousPages = () => setPages((pages) => pages - 1);
 
+  // Sert a voir si le formulaire est complet avant de passer a la page suivante
   const infoPersoComplet =
     name.length <= 0 || phone.length <= 0 || email.length <= 0;
+
+  //Switch pour que selon le numéro de la page, le contenue change
 
   const renderPage = () => {
     switch (pages) {
@@ -75,7 +79,6 @@ function App() {
             pages={pages}
             check={check}
             setCheck={setCheck}
-            
           />
         );
       case 2:
@@ -91,8 +94,17 @@ function App() {
           />
         );
       case 3:
-        return <Sumarry pages={pages} setPages={setPages} option={option} check={check} pack={pack} />;
+        return (
+          <Sumarry
+            pages={pages}
+            setPages={setPages}
+            option={option}
+            check={check}
+            pack={pack}
+          />
+        );
       default:
+        // Si la page depasse la limite, il affiche 'default'
         return (
           <div className="h-full flex flex-col justify-center items-center">
             <img src={Thankyou} alt="" />
@@ -111,16 +123,17 @@ function App() {
     }
   };
 
-
   return (
     <div className="bg-white h-fit p-2 rounded-2xl flex gap-4 relative">
       <div className="h-[500px] w-[260px] rounded-xl overflow-hidden">
         <Sidebar pages={pages} />
       </div>
       <div className="w-[590px] h-[500px] flex justify-center bg-white">
+        {/* on appelle la fonction pour le rendu de la page  */}
         {renderPage()}
       </div>
-      {(pages > 0 && pages < 4) && (
+      {/* Apres la première page jusqu'à l'avant dernière on appelle le button 'go back'  */}
+      {pages > 0 && pages < 4 && (
         <button
           onClick={previousPages}
           className="absolute bottom-5 border-2 border-gray-500 rounded-xl right-[50%] px-6 p-3 text-[#032952ff] font-semibold"
@@ -128,6 +141,7 @@ function App() {
           Go back
         </button>
       )}
+      {/* si le formulaire n'est pas rempli ou dans la page 1, l'utilisateur n'a pas choisit de card, le button devient disable  */}
       {infoPersoComplet || (!pack && pages === 1) ? (
         <button
           className="bg-[#002551ff] text-white absolute right-16 bottom-5 px-6 py-3 rounded-xl cursor-not-allowed"
@@ -139,8 +153,10 @@ function App() {
         <button
           onClick={nextPages}
           className="bg-[#002551ff] text-white absolute right-16 bottom-5 px-6 py-3 rounded-xl"
-          style={{display : `${pages == 4 ? 'none' : 'block'}`}}
+          // Apres la page 4, le button disparait
+          style={{ display: `${pages == 4 ? "none" : "block"}` }}
         >
+          {/* Apres la page 3 le contenue du button change  */}
           {pages < 3 ? " Next Step" : "Confirm"}
         </button>
       )}
