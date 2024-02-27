@@ -75,6 +75,7 @@ function App() {
             pages={pages}
             check={check}
             setCheck={setCheck}
+            
           />
         );
       case 2:
@@ -119,7 +120,7 @@ function App() {
       <div className="w-[590px] h-[500px] flex justify-center bg-white">
         {renderPage()}
       </div>
-      {pages > 0 && (
+      {(pages > 0 && pages < 4) && (
         <button
           onClick={previousPages}
           className="absolute bottom-5 border-2 border-gray-500 rounded-xl right-[50%] px-6 p-3 text-[#032952ff] font-semibold"
@@ -138,6 +139,7 @@ function App() {
         <button
           onClick={nextPages}
           className="bg-[#002551ff] text-white absolute right-16 bottom-5 px-6 py-3 rounded-xl"
+          style={{display : `${pages == 4 ? 'none' : 'block'}`}}
         >
           {pages < 3 ? " Next Step" : "Confirm"}
         </button>
