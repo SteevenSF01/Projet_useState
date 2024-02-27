@@ -22,7 +22,7 @@ function App() {
   const [checkAdd, setCheckAdd] = useState(false);
   const [checkedItems, setCheckedItems] = useState({});
   const [option, setOption] = useState([])
-  
+
   const toggleCheckbox = (id, element) => {
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
@@ -110,10 +110,9 @@ function App() {
     }
   };
 
-  console.log(option);
 
   return (
-    <div className="bg-red-800 h-fit p-2 rounded-2xl flex gap-4 relative">
+    <div className="bg-white h-fit p-2 rounded-2xl flex gap-4 relative">
       <div className="h-[500px] w-[260px] rounded-xl overflow-hidden">
         <Sidebar pages={pages} />
       </div>
@@ -123,14 +122,14 @@ function App() {
       {pages > 0 && (
         <button
           onClick={previousPages}
-          className="absolute bottom-0 right-[50%] px-6 p-3 text-[#032952ff] font-semibold"
+          className="absolute bottom-5 border-2 border-gray-500 rounded-xl right-[50%] px-6 p-3 text-[#032952ff] font-semibold"
         >
           Go back
         </button>
       )}
       {infoPersoComplet || (!pack && pages === 1) ? (
         <button
-          className="bg-[#002551ff] text-white absolute right-16 bottom-0 px-6 py-3 rounded-xl cursor-not-allowed"
+          className="bg-[#002551ff] text-white absolute right-16 bottom-5 px-6 py-3 rounded-xl cursor-not-allowed"
           disabled
         >
           Next Step
@@ -138,7 +137,7 @@ function App() {
       ) : (
         <button
           onClick={nextPages}
-          className="bg-[#002551ff] text-white absolute right-16 bottom-0 px-6 py-3 rounded-xl"
+          className="bg-[#002551ff] text-white absolute right-16 bottom-5 px-6 py-3 rounded-xl"
         >
           {pages < 3 ? " Next Step" : "Confirm"}
         </button>

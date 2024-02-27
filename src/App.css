@@ -8,3 +8,9 @@ body{
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 475px) {
+  body{
+    width: fit-content;
+  }
+}

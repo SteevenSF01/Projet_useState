@@ -7,9 +7,9 @@ import Pro from "./../../images/icon-pro.svg";
 
 export default function Plan(props) {
   const array = [
-    { image: Arcade, nom: "Arcade", anuel: "$90/yr", mensuel: "$9/mo" },
-    { image: Advanced, nom: "Advanced", anuel: "$120/yr", mensuel: "$12/mo" },
-    { image: Pro, nom: "Pro", anuel: "$150/yr", mensuel: "$15/mo" },
+    { image: Arcade, nom: "Arcade", anuel: 90, mensuel: 9 },
+    { image: Advanced, nom: "Advanced", anuel: 20, mensuel: 12 },
+    { image: Pro, nom: "Pro", anuel: 50, mensuel: 15 },
   ];
 
 
@@ -38,11 +38,11 @@ export default function Plan(props) {
                 {element.nom}{" "}
                 {props.check ? (
                   <span className="text-[12px] text-gray-400 font-medium ">
-                    {element.mensuel}
+                    ${element.mensuel}/mo
                   </span>
                 ) : (
                   <span className="text-[12px] text-gray-400 font-medium ">
-                    {element.anuel}
+                    ${element.anuel}/yr
                   </span>
                 )}
               </p>
